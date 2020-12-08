@@ -1,4 +1,7 @@
 package models;
 
-public class DatabaseManagement {
+public interface DatabaseManagement {
+    boolean equals(Object otherObject);
+    void save();
+    void delete();
 }
