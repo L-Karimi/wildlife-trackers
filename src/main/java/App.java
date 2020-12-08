@@ -22,6 +22,23 @@ public class App {
             return new ModelAndView(model, "EndangeredAnimalForm.hbs");
         }, new HandlebarsTemplateEngine());
 
+        post("/endangeredAnimal", (request, response) ->{
+            Map<String, Object> model = new HashMap<>();
+            String animalName = request.queryParams("animalName");
+            int age = Integer.parseInt(request.queryParams("age"));
+            int animalId = Integer.parseInt(request.queryParams("animalId"));
+            String animalGroupAge = request.queryParams("animalGroupAge");
+            String animalCondition = request.queryParams("animalCondition");
+            EndangeredAnimal newEndangeredAnimal = new EndangeredAnimal(animalName, animalGroupAge, animalCondition);
+            model.put("newEndangeredAnimal", newEndangeredAnimal);
+            return new ModelAndView(model, "AllAnimals.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/endangeredAnimal", (req, res)->{
+            Map<String, Object> model = new HashMap<String, Object>();
+            return new ModelAndView(model, "AllAnimals.hbs");
+        }, new HandlebarsTemplateEngine());
+
     }
     }
 
