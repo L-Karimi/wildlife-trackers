@@ -39,6 +39,24 @@ public class App {
             return new ModelAndView(model, "AllAnimals.hbs");
         }, new HandlebarsTemplateEngine());
 
+
+        get("/newNonExtinct", (req, res)->{
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "Non-ExtinctForm.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/newNonExtinct", (request, response) ->{
+            Map<String, Object> model = new HashMap<>();
+            String animalName = request.queryParams("animalName");
+            int age = Integer.parseInt(request.queryParams("age"));
+            int animalId = Integer.parseInt(request.queryParams("animalId"));
+            String animalGroupAge = request.queryParams("animalGroupAge");
+            String animalCondition = request.queryParams("animalCondition");
+            NonEndangeredAnimal newNonEndangeredAnimal = new NonEndangeredAnimal(animalName, animalGroupAge, animalCondition);
+            model.put("newNonEndangeredAnimal", newNonEndangeredAnimal);
+            return new ModelAndView(model, "AllAnimals.hbs");
+        }, new HandlebarsTemplateEngine());
+
     }
     }
 
