@@ -4,41 +4,39 @@
         <div class="col-md-6">
             <div id="card33" class="card">
                 <h1 class="text-center text-success">Endangered animals</h1>
-                <h4><em class="text-white">Animal Name: </em> <em>Cheeetah</em></h4>
-                <h4><em class="text-white">Animal age: </em> 34yrs </h4>
-                <h4><em class="text-white">Animal Id: </em>17</h4>
-                <h4><em class="text-white">Animal GroupAge: </em>young</h4>
-                <h4><em class="text-white">Animal Condition: </em>Healthy</h4>
+<!--                <h4><em class="text-white">Animal Name: </em> <em>Cheeetah</em></h4>-->
+<!--                <h4><em class="text-white">Animal age: </em> 34yrs </h4>-->
+<!--                <h4><em class="text-white">Animal Id: </em>17</h4>-->
+<!--                <h4><em class="text-white">Animal GroupAge: </em>young</h4>-->
+<!--                <h4><em class="text-white">Animal Condition: </em>Healthy</h4>-->
                 {{#if endangeredAnimals}}
                     {{#each endangeredAnimals}}
 
-                        <h5><em class="text-white">Animal Name: </em> <em>{{ animalname }}</em></h5>
-                        <h5><em class="text-white">Animal age: </em> {{ age }} </h5>
-                        <h5><em class="text-white">Animal Id: </em>{{ id }}</h5>
-                        <h5><em class="text-white">Animal GroupAge: </em>{{ animalgroupage }}</h5>
-                        <h5><em class="text-white">Animal Condition: </em>{{ animalcondition }}</h5>
+                        <h5><em class="text-blue">Animal Name: </em> <em>{{ animalName }}</em></h5>
+                        <h5><em class="text-blue">Animal GroupAge: </em>{{ animalGroupAge }}</h5>
+                        <h5><em class="text-blue">Animal Condition: </em>{{ animalCondition }}</h5>
                     {{/each}}
                 {{else}}
-                    <p class="text-danger">Click Vulnerable to Add more </p>
+                    <a href="/newNonExtinct" class="text-danger">Click Vulnerable to Add more </a>
                 {{/if}}
             </div>
         </div>
         <div class="col-md-6">
             <div id="card33" class="card">
                 <h1 class="text-center text-success">Non-Extinct animals</h1>
-                <h4><em class="text-white">Animal Name: </em> <em>lion</em></h4>
-                <h4><em class="text-white">Animal age: </em> 57yrs </h4>
-                <h4><em class="text-white">Animal Id: </em>10</h4>
-                <h4><em class="text-white">Animal GroupAge: </em>young</h4>
-                <h4><em class="text-white">Animal Condition: </em>Healthy</h4>
-                {{#if nonendangeredAnimals}}
+                <h4><em class="text-blue">Animal Name: </em> <em>lion</em></h4>
+                <h4><em class="text-blue">Animal age: </em> 57yrs </h4>
+                <h4><em class="text-blue">Animal Id: </em>10</h4>
+                <h4><em class="text-blue">Animal GroupAge: </em>young</h4>
+                <h4><em class="text-blue">Animal Condition: </em>Healthy</h4>
+                {{#if nonEndangeredAnimals}}
                     {{#each nonEndangeredAnimals}}
 
-                        <h5 class="text-white">Animal Name: <em>{{ animalname }}</em></h5>
-                        <h5 class="text-white">Animal age:  {{ age }} </h5>
-                    <h5 class="text-white"> Animal Id: {{ id }}</h5>
-                        <h5 class="text-white">Animal GroupAge: {{ animalgroupage }}</h5>
-                        <h5 class="text-white">Animal Condition: {{ animalcondition }}</h5>
+                        <h5 class="text-blue">Animal Name: <em>{{ animalName }}</em></h5>
+                        <h5 class="text-blue">Animal age:  {{ age }} </h5>
+                    <h5 class="text-blue"> Animal Id: {{ id }}</h5>
+                        <h5 class="text-blue">Animal GroupAge: {{ animalGroupAge }}</h5>
+                        <h5 class="text-blue">Animal Condition: {{ animalCondition }}</h5>
                     {{/each}}
                 {{else}}
                     <p class="text-danger">Click Non-Extinct to add more </p>
@@ -48,12 +46,12 @@
     </div><br><br>
     <div id="card33" class="card">
         <h1 Class="text-center text-success">Sightings</h1>
-        <h4><em class="text-white">Ranger Name: </em>Hazael Wangui</h4>
-        <h4><em class="text-white">Location: </em>Zone D</h4>
-        <h4><em class="text-white">Animal Id: </em>200</h4>
+        <h4><em class="text-blue">Ranger Name: </em>Hazael Wangui</h4>
+        <h4><em class="text-blue">Location: </em>Zone D</h4>
+        <h4><em class="text-blue">Animal Id: </em>200</h4>
         {{#if sightings}}
             {{#each sightings}}
-                <h4><em class="text-success">Ranger Name: </em> <em>{{ rangername }}</em></h4>
+                <h4><em class="text-success">Ranger Name: </em> <em>{{ rangerName }}</em></h4>
                 <h4><em class="text-success">Animal Id: </em> {{ id }} </h4>
                 <h4><em class="text-success">Location: </em>{{ location }}</h4>
             {{/each}}

@@ -1,28 +1,26 @@
 package models;
 
 import org.sql2o.Connection;
-import org.sql2o.Sql2oException;
 
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
 public class Sighting implements DatabaseManagement{
-    private int animalId;
     private String location;
     private String rangerName;
     private int id;
     private Timestamp time;
 
 
-    public Sighting(int animalId, String rangerName, String location) {
-        this.animalId = animalId;
+    public Sighting(String rangerName, String location) {
         this.rangerName = rangerName;
         this.location = location;
+        this.id = id;
     }
 
-    public int getAnimalId() {
-        return animalId;
+    public int getId() {
+        return id;
     }
 
     public String getLocation() {
@@ -51,9 +49,8 @@ public class Sighting implements DatabaseManagement{
 
     public void save() {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO sightings (animalId, rangerName, location, time) VALUES (:animalId, :rangerName, :location, now())";
+            String sql = "INSERT INTO sightings ( rangerName, location, time) VALUES ( :rangerName, :location, now())";
             this.id = (int) con.createQuery(sql, true)
-                    .addParameter("animalId", this.animalId)
                     .addParameter("rangerName", this.rangerName)
                     .addParameter("location", this.location)
                     .executeUpdate()
@@ -66,14 +63,14 @@ public class Sighting implements DatabaseManagement{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Sighting sighting = (Sighting) o;
-        return animalId == sighting.animalId &&
+        return id == sighting.id &&
                 location.equals(sighting.location) &&
                 rangerName.equals(sighting.rangerName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(animalId, location, rangerName);
+        return Objects.hash(id, location, rangerName);
     }
 
     public static Sighting find(int id) {
@@ -95,4 +92,7 @@ public class Sighting implements DatabaseManagement{
         }
     }
 
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
 }

@@ -3,27 +3,27 @@
     <div class="endangeredAnimal">
         <form action="/endangeredAnimal" method="POST">
             <div class="form-group">
+                <label >Choose Animal Name </label>
                 <input type="text" class="form-control required" name="animalName" id="animalName" placeholder="Enter animals name..." required>
             </div>
-
-            <div class="form-group">
-                <input type="number" class="form-control required" name="age" id="age" placeholder="Enter an estimated animals age...." required>
-            </div><br>
-            <select class="form-control form-control-sm" name="animalAge">
-                <option selected>Choose Animal age group bracket</option>
+            <br>
+            <div>
+            <label >Choose Animal Age </label>
+            <select class="form-control form-control-sm" name="animalCondition" id="animalCondition">
                 <option value="Newborn">Newborn</option>
                 <option value="Young">Young</option>
                 <option value="Adult">Adult</option>
             </select><br><br>
+        </div>
             <div class="form-group">
-                <input type="number" class="form-control required" name="id" id="age" placeholder="Enter animal id...." required>
-            </div><br><br>
-            <select class="form-control form-control-sm" name="animalcondition">
-                <option selected>Choose Animal Condition</option>
+                <label >Choose Animal Condition </label>
+            <br><br>
+            <select class="form-control form-control-sm" name="animalGroupAge" id="animalGroupAge">
                 <option value="Healthy">Healthy</option>
                 <option value="Ill">Ill</option>
                 <option value="Okay">Okay</option>
             </select><br><br>
+            </div>
 
             <button type="submit" class="btn btn-success">Add your Tally </button>
         </form>

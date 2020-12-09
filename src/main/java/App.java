@@ -1,11 +1,11 @@
-
-import models.*;
+import models.Animal;
+import models.EndangeredAnimal;
+import models.Sighting;
 import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static spark.Spark.*;
@@ -17,7 +17,8 @@ public class App {
         }
         return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
     }
-    Sql2o sql2o = new Sql2o ("jdbc:postgresql://localhost:5432/wildlife_trackers", "moringa", "wangeci");
+
+    public Sql2o sql2o = new Sql2o ("jdbc:postgresql://localhost:5432/wildlife_trackers", "moringa", "wangeci");
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
         staticFileLocation("/public");
@@ -32,20 +33,29 @@ public class App {
                 return new ModelAndView(model, "EndangeredAnimalForm.hbs");
             }, new HandlebarsTemplateEngine());
 
-            post("/endangeredAnimal", (request, response) -> {
+
+        get("/Animals", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("nonEndangeredAnimals", Animal.getAllAnimals());
+            return new ModelAndView(model, "Animals.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+
+        post("/endangeredAnimal", (request, response) -> {
                 Map<String, Object> model = new HashMap<>();
-                String animalName = request.queryParams("animalname");
-                int age = Integer.parseInt(request.queryParams("age"));
-                int animalId = Integer.parseInt(request.queryParams("id"));
-                String animalGroupAge = request.queryParams("animalgroupage");
-                String animalCondition = request.queryParams("animalcondition");
+                String animalName = request.queryParams("animalName");
+                String animalGroupAge = request.queryParams("animalGroupAge");
+                String animalCondition = request.queryParams("animalCondition");
                 EndangeredAnimal newEndangeredAnimal = new EndangeredAnimal(animalName, animalGroupAge, animalCondition);
+                newEndangeredAnimal.saveEndangered();
                 model.put("newEndangeredAnimal", newEndangeredAnimal);
                 return new ModelAndView(model, "AllAnimals.hbs");
             }, new HandlebarsTemplateEngine());
 
             get("/endangeredAnimal", (req, res) -> {
-                Map<String, Object> model = new HashMap<String, Object>();
+                Map<String, Object> model = new HashMap<>();
+                model.put("endangeredAnimals", EndangeredAnimal.all());
                 return new ModelAndView(model, "AllAnimals.hbs");
             }, new HandlebarsTemplateEngine());
 
@@ -57,15 +67,14 @@ public class App {
 
             post("/newNonExtinct", (request, response) -> {
                 Map<String, Object> model = new HashMap<>();
-                String animalName = request.queryParams("animalname");
-                int age = Integer.parseInt(request.queryParams("age"));
-                int animalId = Integer.parseInt(request.queryParams("id"));
-                String animalGroupAge = request.queryParams("animalgroupage");
-                String animalCondition = request.queryParams("animalcondition");
-                NonEndangeredAnimal newNonEndangeredAnimal = new NonEndangeredAnimal(animalName, animalGroupAge, animalCondition);
-                model.put("newNonEndangeredAnimal", newNonEndangeredAnimal);
+                String animalName = request.queryParams("animalName");
+                Animal animal = new Animal(animalName);
+                animal.save();
+                model.put("newNonEndangeredAnimal", animal);
                 return new ModelAndView(model, "AllAnimals.hbs");
             }, new HandlebarsTemplateEngine());
+
+
             get("/sighting", (req, res) -> {
                 Map<String, Object> model = new HashMap<>();
                 return new ModelAndView(model, "Sightings-form.hbs");
@@ -73,14 +82,15 @@ public class App {
 
             post("/newSighting", (request, response) -> {
                 Map<String, Object> model = new HashMap<>();
-                int animalId = Integer.parseInt(request.queryParams("id"));
                 String location = request.queryParams("location");
-                String rangerName = request.queryParams("rangername");
-                Sighting newSighting = new Sighting(animalId, location, rangerName);
+                String rangerName = request.queryParams("rangerName");
+                Sighting newSighting = new Sighting(rangerName, location);
+                newSighting.save();
                 model.put("newSighting", newSighting);
                 return new ModelAndView(model, "AllAnimals.hbs");
             }, new HandlebarsTemplateEngine());
         }
-    }
+
+}
 
 

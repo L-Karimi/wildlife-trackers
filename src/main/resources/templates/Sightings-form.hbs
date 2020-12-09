@@ -3,10 +3,10 @@
     <div class="endangeredAnimal">
         <form action="/newSighting" method="POST">
             <div class="form-group">
-                <input type="text" class="form-control required" name="rangername" id="rangername" placeholder="Enter your name..." required>
+                <input type="text" class="form-control required" name="rangerName" id="rangerName" placeholder="Enter your name..." required>
             </div>
 
-            <select class="form-control form-control-sm" name="location">
+            <select class="form-control form-control-sm" name="location" id="location">
                 <option selected>Select animal location</option>
                 <option value="Zone A">Zone A</option>
                 <option value="Zone B">Zone B</option>
@@ -15,9 +15,7 @@
                 <option value="Zone E">Zone E</option>
                 <option value="Zone F">Zone F</option>
             </select><br><br>
-            <div class="form-group">
-                <input type="number" class="form-control required" name="id" id="age" placeholder="Enter animal id...." required>
-            </div><br><br>
+          <br><br>
 
             <button type="submit" class="btn btn-primary">Enter Tally</button>
         </form>
