@@ -17,7 +17,7 @@ public class App {
         }
         return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
     }
-    Sql2o sql2o = new Sql2o ("jdbc:postgresql://localhost:5432/wildlife_trackers", "moringa", "lucy");
+    Sql2o sql2o = new Sql2o ("jdbc:postgresql://localhost:5432/wildlife_trackers", "moringa", "wangeci");
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
         staticFileLocation("/public");
@@ -34,11 +34,11 @@ public class App {
 
             post("/endangeredAnimal", (request, response) -> {
                 Map<String, Object> model = new HashMap<>();
-                String animalName = request.queryParams("animalName");
+                String animalName = request.queryParams("animalname");
                 int age = Integer.parseInt(request.queryParams("age"));
-                int animalId = Integer.parseInt(request.queryParams("animalId"));
-                String animalGroupAge = request.queryParams("animalGroupAge");
-                String animalCondition = request.queryParams("animalCondition");
+                int animalId = Integer.parseInt(request.queryParams("id"));
+                String animalGroupAge = request.queryParams("animalgroupage");
+                String animalCondition = request.queryParams("animalcondition");
                 EndangeredAnimal newEndangeredAnimal = new EndangeredAnimal(animalName, animalGroupAge, animalCondition);
                 model.put("newEndangeredAnimal", newEndangeredAnimal);
                 return new ModelAndView(model, "AllAnimals.hbs");
@@ -57,11 +57,11 @@ public class App {
 
             post("/newNonExtinct", (request, response) -> {
                 Map<String, Object> model = new HashMap<>();
-                String animalName = request.queryParams("animalName");
+                String animalName = request.queryParams("animalname");
                 int age = Integer.parseInt(request.queryParams("age"));
-                int animalId = Integer.parseInt(request.queryParams("animalId"));
-                String animalGroupAge = request.queryParams("animalGroupAge");
-                String animalCondition = request.queryParams("animalCondition");
+                int animalId = Integer.parseInt(request.queryParams("id"));
+                String animalGroupAge = request.queryParams("animalgroupage");
+                String animalCondition = request.queryParams("animalcondition");
                 NonEndangeredAnimal newNonEndangeredAnimal = new NonEndangeredAnimal(animalName, animalGroupAge, animalCondition);
                 model.put("newNonEndangeredAnimal", newNonEndangeredAnimal);
                 return new ModelAndView(model, "AllAnimals.hbs");
@@ -73,9 +73,9 @@ public class App {
 
             post("/newSighting", (request, response) -> {
                 Map<String, Object> model = new HashMap<>();
-                int animalId = Integer.parseInt(request.queryParams("animalId"));
+                int animalId = Integer.parseInt(request.queryParams("id"));
                 String location = request.queryParams("location");
-                String rangerName = request.queryParams("rangerName");
+                String rangerName = request.queryParams("rangername");
                 Sighting newSighting = new Sighting(animalId, location, rangerName);
                 model.put("newSighting", newSighting);
                 return new ModelAndView(model, "AllAnimals.hbs");
