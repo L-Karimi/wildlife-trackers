@@ -23,3 +23,5 @@ dependencies {
     compile group: 'postgresql', name: 'postgresql', version: '9.0-801.jdbc4'
     compile "com.sparkjava:spark-core:2.6.0"
 }
+apply plugin: 'java'
+applicationName = 'wildlifetrackers001'

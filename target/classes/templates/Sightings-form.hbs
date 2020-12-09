@@ -1,0 +1,27 @@
+{{#partial "content"}}
+    <br><br><br>
+    <div class="endangeredAnimal">
+        <form action="/newSighting" method="POST">
+            <div class="form-group">
+                <input type="text" class="form-control required" name="rangerName" id="rangerName" placeholder="Enter your name..." required>
+            </div>
+
+            <select class="form-control form-control-sm" name="location">
+                <option selected>Select animal location</option>
+                <option value="Zone A">Zone A</option>
+                <option value="Zone B">Zone B</option>
+                <option value="Zone C">Zone C</option>
+                <option value="Zone D">Zone D</option>
+                <option value="Zone E">Zone E</option>
+                <option value="Zone F">Zone F</option>
+            </select><br><br>
+            <div class="form-group">
+                <input type="number" class="form-control required" name="animalId" id="age" placeholder="Enter animal id...." required>
+            </div><br><br>
+
+            <button type="submit" class="btn btn-primary">Enter Tally</button>
+        </form>
+    </div>
+    </div>
+{{/partial}}
+{{> layout.hbs}}

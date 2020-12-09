@@ -17,7 +17,7 @@ Visit the link - https://github.com/luciahroyalty101/wildlife-trackers
 5. Then open the terminal and write $ gradle run.
 
 ### Link to live site
-*
+* https://wildlifetrackers001.herokuapp.com/
 
 ## TECNOLOGIES USED
 * java
